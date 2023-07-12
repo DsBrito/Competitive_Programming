@@ -1,0 +1,61 @@
+
+#include <iostream>
+#include <vector>
+#include <map>
+#include <list>
+
+using namespace std;
+
+map <int, vector<int>>graph;
+int neib[105];
+
+int BFS(int n){
+    bool erase = true;
+    int sum =0;
+    list<int>queue;
+
+    while(erase){
+        false;
+
+        for(int i =1; i<=n;i++){
+            if(neib[1] == 1){
+                queue.push_back(i);
+                erase = true;
+            }
+        }
+
+        if(erase) sum++;
+
+        while (!queue.empty()){
+            int element  = queue.front();
+            queue.pop_front();
+
+            neib[element]--;
+
+            for(auto i = graph[element].begin(); i!=graph[element].end(); i++){
+                neib[*i]--;
+            }
+        }
+        
+    }
+
+    return sum;
+}
+
+int main(){
+    int n,m;
+    cin >> n >> m;
+
+for(int i = 0; i< m; i++){
+    int a,b;
+    cin >> a >> b;
+    neib[a]++;
+    neib[b]++;
+
+    graph[a].push_back(b);
+    graph[b].push_back(a);
+
+}
+
+cout << BFS(n);
+}
